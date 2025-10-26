@@ -1,0 +1,32 @@
+canoeville-email-service/
+├─ AGENTS.md
+├─ architecture.txt
+├─ eslint.config.js
+├─ package.json
+├─ README.md
+├─ sst-env.d.ts
+├─ sst.config.ts
+├─ tsconfig.json
+└─ app/
+   ├─ infra/
+   │  └─ api.ts
+   └─ packages/
+      └─ email/
+         ├─ package.json
+         ├─ sst-env.d.ts
+         └─ src/
+            ├─ handleContact.ts
+            ├─ handleReservation.ts
+            ├─ index.ts
+            ├─ templates/
+            │  ├─ contact-email-incoming-template.ts
+            │  ├─ contact-email-response-template.ts
+            │  ├─ reservation-email-incoming-template.ts
+            │  └─ reservation-email-response-template.ts
+            ├─ types/
+            │  └─ index.ts
+            └─ utils/
+               ├─ getErrorMessage.ts
+               ├─ resend.ts
+               ├─ sendContactEmail.ts
+               └─ sendReservationEmail.ts

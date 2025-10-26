@@ -1,0 +1,14 @@
+{
+  "name": "@canoeville/email",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "resend": "^6.2.2",
+    "sst": "^3"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.2",
+    "@types/aws-lambda": "^8.10.147"
+  }
+}
