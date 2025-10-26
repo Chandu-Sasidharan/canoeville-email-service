@@ -30,7 +30,7 @@ async function handleContact(data: ContactFormType) {
       };
     }
 
-    if (!data.userName || !data.userEmail || !data.message) {
+    if (!data.userName || !data.userEmail || !data.message || !data.userPhone) {
       return {
         statusCode: 400,
         headers: corsHeaders,

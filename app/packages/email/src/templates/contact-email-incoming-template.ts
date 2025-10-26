@@ -1,7 +1,7 @@
 import { ContactFormType } from '../types';
 
 export default function getContactEmailIncomingTemplate(data: ContactFormType) {
-  const { userName, userEmail, message } = data;
+  const { userName, userEmail, userPhone, message } = data;
   const currentYear = new Date().getFullYear();
 
   return `
@@ -32,17 +32,20 @@ export default function getContactEmailIncomingTemplate(data: ContactFormType) {
                     margin-top: 20px;
                     padding-top: 10px;
                 }
-                .email-signature {
-                    margin-top: 20px;
+                .contacts {
+                    margin: 0px;
                 }
             </style>
         </head>
         <body>
             <div class="email-wrapper">
                 <div class="email-content">
-                    <p>Message from <strong>${userName}</strong>,  <strong>${userEmail}</strong></p>
                     <p>Hello Jijo,</p>
                     <p>${message}</p>
+                    <p>With Regards,</p>
+                    <p class="contacts">Name: <strong>${userName}</strong></p>
+                    <p class="contacts">Phone: <strong>${userPhone}</strong></p>
+                    <p class="contacts">Email: <strong>${userEmail}</strong></p>
                 </div>
                 <div class="email-footer">
                     © ${currentYear} Canoeville | All Rights Reserved.

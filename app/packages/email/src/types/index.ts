@@ -1,6 +1,7 @@
 export type ContactFormType = {
   userName: string;
   userEmail: string;
+  userPhone: string;
   message: string;
   type: 'contact' | 'reservation';
   hp?: string; // honeypot field
