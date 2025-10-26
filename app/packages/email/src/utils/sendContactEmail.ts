@@ -14,7 +14,7 @@ export default async function sendContactEmail(
     // Send email to internal team
     const response = await resend.emails.send({
       from: 'Contact Us Form Submission <contact-us-form@canoeville.com>',
-      to: 'admin@canoeville.com',
+      to: 'hello@canoeville.com',
       replyTo: data.userEmail,
       subject: `New message from ${data.userName}`,
       html: incomingHtmlContent,

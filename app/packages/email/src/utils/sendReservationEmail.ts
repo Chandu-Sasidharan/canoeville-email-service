@@ -13,7 +13,7 @@ export default async function sendReservationEmail(
     // Send email to internal team
     const response = await resend.emails.send({
       from: 'Reservation Form Submission <reservation-form@canoeville.com>',
-      to: 'admin@canoeville.com',
+      to: 'hello@canoeville.com',
       subject: `New reservation request from ${data.userName}`,
       replyTo: data.userEmail,
       html: incomingHtmlContent,
