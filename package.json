@@ -9,7 +9,7 @@
     "app/packages/*"
   ],
   "scripts": {
-    "dev": "npx sst dev",
+    "dev": "AWS_PROFILE=canoeville npx sst dev",
     "deploy": "AWS_PROFILE=canoeville npx sst deploy --stage production",
     "aws:login": "aws sso login --profile canoeville",
     "test": "echo \"No test specified\"",
