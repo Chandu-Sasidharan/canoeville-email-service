@@ -1,4 +1,7 @@
-import type { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import type {
+  APIGatewayProxyEventV2,
+  APIGatewayProxyResultV2,
+} from 'aws-lambda';
 import handleContact from './handleContact.js';
 import handleReservation from './handleReservation.js';
 import { ContactFormType, ReservationFormType } from './types';
@@ -15,24 +18,12 @@ function isReservationForm(
   return data.type === 'reservation';
 }
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
-};
-
 export const handler = async (
-  event: APIGatewayProxyEvent
-): Promise<APIGatewayProxyResult> => {
-  // CORS preflight support
-  if (event.httpMethod === 'OPTIONS') {
-    return { statusCode: 200, headers: corsHeaders, body: '' };
-  }
-
-  if (event.body === null) {
+  event: APIGatewayProxyEventV2
+): Promise<APIGatewayProxyResultV2> => {
+  if (!event.body) {
     return {
       statusCode: 400,
-      headers: corsHeaders,
       body: JSON.stringify({ message: 'Missing request body' }),
     };
   }
@@ -41,15 +32,10 @@ export const handler = async (
 
   // Try parsing JSON body
   try {
-    if (typeof event.body === 'string') {
-      data = JSON.parse(event.body);
-    } else {
-      data = event.body as ContactFormType | ReservationFormType;
-    }
+    data = JSON.parse(event.body);
   } catch (error) {
     return {
       statusCode: 400,
-      headers: corsHeaders,
       body: JSON.stringify({ message: 'Invalid Data' }),
     };
   }
@@ -58,7 +44,6 @@ export const handler = async (
   if (!data || typeof data !== 'object' || !('type' in data)) {
     return {
       statusCode: 400,
-      headers: corsHeaders,
       body: JSON.stringify({ message: 'Invalid Data' }),
     };
   }
@@ -68,7 +53,6 @@ export const handler = async (
 
   return {
     statusCode: 400,
-    headers: corsHeaders,
     body: JSON.stringify({ message: 'Invalid request type' }),
   };
 };

@@ -2,19 +2,12 @@ import sendReservationEmail from './utils/sendReservationEmail';
 import getErrorMessage from './utils/getErrorMessage';
 import { ReservationFormType } from './types';
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
-};
-
 async function handleReservation(data: ReservationFormType) {
   try {
     // Bot detection: honeypot
     if (data.hp && data.hp.trim() !== '') {
       return {
         statusCode: 204, // No Content — don't reveal detection logic
-        headers: corsHeaders,
         body: '',
       };
     }
@@ -25,7 +18,6 @@ async function handleReservation(data: ReservationFormType) {
     if (!elapsedTime || elapsedTime < MIN_FILL_TIME_MS) {
       return {
         statusCode: 204, // No Content — don't reveal detection logic
-        headers: corsHeaders,
         body: '',
       };
     }
@@ -40,7 +32,6 @@ async function handleReservation(data: ReservationFormType) {
     ) {
       return {
         statusCode: 400,
-        headers: corsHeaders,
         body: JSON.stringify({ message: 'Missing required fields' }),
       };
     }
@@ -49,7 +40,6 @@ async function handleReservation(data: ReservationFormType) {
 
     return {
       statusCode: 200,
-      headers: corsHeaders,
       body: JSON.stringify({
         message: 'Email sent successfully',
       }),
@@ -63,7 +53,6 @@ async function handleReservation(data: ReservationFormType) {
 
     return {
       statusCode: 400,
-      headers: corsHeaders,
       body: JSON.stringify({ message: 'Internal server error' }),
     };
   }
