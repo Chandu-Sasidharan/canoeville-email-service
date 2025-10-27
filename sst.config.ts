@@ -10,6 +10,6 @@ export default $config({
     };
   },
   async run() {
-    await import('./app/infra/api');
+    await import('./app/infra/lambda');
   },
 });

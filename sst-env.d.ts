@@ -5,8 +5,9 @@
 
 declare module "sst" {
   export interface Resource {
-    "Api": {
-      "type": "sst.aws.ApiGatewayV2"
+    "Email": {
+      "name": string
+      "type": "sst.aws.Function"
       "url": string
     }
     "RESEND_API_KEY": {
